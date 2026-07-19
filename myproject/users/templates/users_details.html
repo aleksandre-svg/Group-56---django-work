@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>user info</h1>
+
+    <ul>
+        <li>id: {{ user_info.id }}</li>
+        <li>username {{ user_info.username }} ({{ user_info.age }})</li>
+        <li>email: {{ user_info.email }}</li>
+        <li>password: {{ user_info.password }}</li>
+    </ul> 
+
+    <a href="/user/delete/{{user_info.id}}"><button>delete</button></a>
+</body>
+</html>

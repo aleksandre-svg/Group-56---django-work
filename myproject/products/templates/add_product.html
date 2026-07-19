@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="title">title:</label><br>
+        <input type="text" name="title" id="title"><br><br>
+
+        <label for="price">price:</label><br>
+        <input type="number" name="price" id="price"><br><br>
+
+        <label for="desc">desc:</label><br>
+        <input type="text" name="desc" id="desc"><br><br>
+
+        <label for="rating">rating (1-5):</label><br>
+        <input type="number" name="rating" id="rating"><br><br>
+
+        <input type="submit">
+    </form>
+</body>
+</html>
