@@ -28,8 +28,41 @@ def register_user(request):
     return render(request, 'users_registration.html')
 
 def edit_user(request):
-    
-    return redirect('main_users')
+    try:
+        context = {
+            'current_user' : User.objects.get(is_current_user = True)
+        }
+    except:
+        context = {
+            'current_user' : None
+        }
+    if request.method == 'POST':
+        
+        email = request.POST.get('user_email')
+        username = request.POST.get('user_name')
+        age = request.POST.get('user_age')
+        password = request.POST.get('password')
+        
+        current_user = User.objects.get(is_current_user = True)
+        
+        if email != '':
+            current_user.email = email
+            current_user.save()
+        
+        if username != '':
+            current_user.username = username
+            current_user.save()
+            
+        if age != '':
+            current_user.age = age
+            current_user.save()
+        
+        if password != '':
+            current_user.password = password
+            current_user.save()
+        
+        return redirect('user_profile')
+    return render(request, 'users_edit.html', context)
 
 def user_info(request, id):
     context = {
