@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends "master.html" %}
+
+{% block title %}
+    main products page
+{% endblock  %}
+
+{% block body %}
     <h1>all products:</h1>
     <ul>
         {% for product in all_products %}
@@ -13,5 +12,4 @@
             <br>
         {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock  %}

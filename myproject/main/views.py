@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
-from . models import Review
-
+from .utils import add_review, get_all_reviews
 # Create your views here.
 def main(request):
     context = {
-        'all_reviews' : Review.objects.all()
+        'all_reviews' : get_all_reviews()
     }
     return render(request, 'index.html', context)
 
@@ -16,13 +15,6 @@ def contact(request):
 
 def services(request):
     if request.method == 'POST':
-        title = request.POST.get('title')
-        review_text = request.POST.get('review_text')
-        rating = request.POST.get('rating')
-        
-        new_review = Review(title=title, desc=review_text, rating=rating)
-        new_review.save()
-        
+        add_review(request.POST)
         return redirect('main_page')
-    
     return render(request, 'services.html')

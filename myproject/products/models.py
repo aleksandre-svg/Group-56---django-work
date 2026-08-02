@@ -6,3 +6,4 @@ class Product(models.Model):
     price = models.FloatField()
     desc = models.CharField()
     rating = models.IntegerField()
+    user = models.IntegerField()

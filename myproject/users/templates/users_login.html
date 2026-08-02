@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends "master.html" %}
+
+{% block title %}
+    login page
+{% endblock %}
+
+{% block body %}
     <form method="POST">
         {% for error in errors %}
             <ul>
@@ -21,5 +20,4 @@
 
         <input type="submit">
     </form>
-</body>
-</html>
+{% endblock  %}

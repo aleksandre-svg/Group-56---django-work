@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends "master.html" %}
+
+{% block title %}
+    edit page
+{% endblock  %}
+
+
+{% block body %}
     <h1>edit user</h1>
     <form method='POST'>
         {% csrf_token %}
@@ -15,5 +15,4 @@
         <input type="password" name='password' placeholder='passwors' value='{{ current_user.password }}'><br><br>
         <input type="submit">
     </form>
-</body>
-</html>
+{% endblock  %}

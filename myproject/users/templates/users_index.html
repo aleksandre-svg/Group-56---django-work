@@ -1,32 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends "master.html" %}
+
+{% block title %}
+    main users  page
+{% endblock  %}
+
+{% block body %}
     <h1>all users</h1>
-
-
-    
-
-    {% comment %} context იდან key ს value ს გამოტანა შეგვიძილია, მაგ:
-    context = {
-        'title': "new page"
-    }
-
-    ----------- index.html
-    <p>{{ title }}</p>
-    {% endcomment %}
-
-
-    {% comment %}  for loop ის და if else ს გამოყენებაც თავისუფლად შეგვიძლია, აუცილებლად როცა ვიყენებთ for loop ს ან if else ს აუცილებლად უნდა დავკეტოთ ეგ for loop ან if else, end keyword ით, ყველა პირობითი კოდი როგორიცაა for loop ს ან if else აუცილებლად უნდა იწერებოდეს ასეთ სიმბოლოებშ {%  %}
-    {% endcomment %}
-
-
     {% for user in all_users %}
         <a href="{{ user.id }}/"><h3>{{ user.username }} ({{ user.age }})</h3></a>
     {% endfor %}
-</body>
-</html>
+{% endblock  %}

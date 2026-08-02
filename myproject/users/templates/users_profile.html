@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends "master.html" %}
+
+{% block title %}
+    profile page
+{% endblock  %}
+
+{% block body %}
     <h1>current user: {{ current_user.username }}</h1>
     <ul>
         <li>email: {{ current_user.email }}</li>
@@ -16,5 +15,4 @@
     <a href="/user/logout/"><button>log out</button></a>
 
     <a href="/user/edit"><button>edit profile</button></a>
-</body>
-</html>
+{% endblock  %}

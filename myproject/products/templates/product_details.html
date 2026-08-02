@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>product info</h1>
+{% extends "master.html" %}
 
+{% block title %}
+    product details
+{% endblock  %}
+
+{% block body %}
+    <h1>product info</h1>
+    <h1>holder : {{ product_holder.username }}</h1>
     <ul>
+        
         <li>title: {{ product_detail.title }} $({{ product_detail.price }})</li>
         <br>
         <li>desc: {{ product_detail.desc }}</li>
@@ -16,6 +16,7 @@
         <li>rating: {{ product_detail.rating }}</li>
     </ul>
 
-    <a href="/product/delete/{{ product_detail.id }}"><button>delete</button></a>
-</body>
-</html>
+    {% if product_holder.username == current_user.username %}
+        <a href="/product/delete/{{ product_detail.id }}"><button>delete</button></a>
+    {% endif %}
+{% endblock  %}

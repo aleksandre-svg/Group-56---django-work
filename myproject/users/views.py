@@ -1,72 +1,40 @@
 from django.shortcuts import render, redirect
-from .models import User
+from .utils import register_user, delete_user, login_user, logout_user, get_current_user, get_all_users, get_user_info, edit_user
 
 # context -> ინფორმაცია რომელიც გადაეცემა template ს დარენდერების დროს, render ის მე 3 არგუმენტი, ეგ არგუმენტი აუცილებლად უნდა იყოს dictionary
 def all_users(request):
     context = {
-        'all_users': User.objects.all()
+        'all_users': get_all_users()
     }
     return render(request, 'users_index.html', context)
 
 def delete_user(request, id):
-    user_delete = User.objects.get(id=id)
-    user_delete.delete()
+    delete_user(id=id)
     return redirect('main_users')
 
 def register_user(request):
     if request.method == 'POST':
-        
-        email = request.POST.get('user_email')
-        username = request.POST.get('user_name')
-        age = request.POST.get('user_age')
-        password = request.POST.get('password')
-        
-        new_user = User(username=username, age=age, email=email, password=password)
-        new_user.save()
-        
-        return redirect('main_users')
+        register_user(request.POST)
+        return redirect('user_login')
     return render(request, 'users_registration.html')
 
 def edit_user(request):
     try:
         context = {
-            'current_user' : User.objects.get(is_current_user = True)
+            'current_user' : get_current_user()
         }
     except:
-        context = {
-            'current_user' : None
-        }
+        return redirect('user_login')
+
     if request.method == 'POST':
-        
-        email = request.POST.get('user_email')
-        username = request.POST.get('user_name')
-        age = request.POST.get('user_age')
-        password = request.POST.get('password')
-        
-        current_user = User.objects.get(is_current_user = True)
-        
-        if email != '':
-            current_user.email = email
-            current_user.save()
-        
-        if username != '':
-            current_user.username = username
-            current_user.save()
-            
-        if age != '':
-            current_user.age = age
-            current_user.save()
-        
-        if password != '':
-            current_user.password = password
-            current_user.save()
-        
+        edit_user(request.POST)
         return redirect('user_profile')
+        
     return render(request, 'users_edit.html', context)
 
 def user_info(request, id):
     context = {
-        'user_info' : User.objects.get(id=id)
+        'user_info' : get_user_info(id=id)
     }
     return render(request, 'users_details.html', context)
 
@@ -75,17 +43,11 @@ def login_user(request):
         'errors': []
     }
     if request.method == 'POST':
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        
         try:
-            found_user = User.objects.get(email=email, password=password)
+            login_user(request.POST)
             context['errors'] = []
             
-            User.objects.update(is_current_user=False) # ყველა ოვიექტს შეუცვლის is_current_user ს
-            
-            found_user.is_current_user = True
-            found_user.save()
+            return redirect('main_users')
         except:
             context['errors'] = ['invalid email or password']
     
@@ -94,7 +56,7 @@ def login_user(request):
 def user_profile(request):
     try:
         context = {
-            'current_user' : User.objects.get(is_current_user=True)
+            'current_user' : get_current_user()
         }
     except:
         context = {
@@ -103,5 +65,5 @@ def user_profile(request):
     return render(request, 'users_profile.html', context)
 
 def logout_user(request):
-    User.objects.update(is_current_user=False)
+    logout_user()
     return redirect('main_users')
