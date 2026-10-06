@@ -7,6 +7,6 @@
 {% block body %}
     <h1>all users</h1>
     {% for user in all_users %}
-        <a href="{{ user.id }}/"><h3>{{ user.username }} ({{ user.age }})</h3></a>
+        <a href="{% url 'user_info' user.id %}"><h3>{{ user }} ({{ user.age }})</h3></a>
     {% endfor %}
 {% endblock  %}

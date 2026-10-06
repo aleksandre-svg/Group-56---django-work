@@ -7,3 +7,6 @@ class Product(models.Model):
     desc = models.CharField()
     rating = models.IntegerField()
     user = models.IntegerField()
+    
+    def __str__(self):
+        return self.title

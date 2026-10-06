@@ -6,4 +6,7 @@ class User(models.Model):
     email = models.EmailField()
     age = models.IntegerField()
     password = models.CharField()
-    is_current_user = models.BooleanField(default=0)
+    is_current_user = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return self.username

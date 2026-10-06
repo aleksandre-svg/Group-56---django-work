@@ -5,3 +5,6 @@ class Review(models.Model):
     title = models.CharField()
     desc = models.CharField()
     rating = models.IntegerField()
+    
+    def __str__(self):
+        return self.title

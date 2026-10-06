@@ -1,16 +1,9 @@
 from .models import User
 
-def register_user(request_post):
-    new_user = User(username=request_post.get('user_name'), 
-                    age=request_post.get('user_age'), 
-                    email=request_post.get('user_email'), 
-                    password=request_post.get('user_password'))
-    new_user.save()
-
-def delete_user(id):
+def delete_account(id):
     User.objects.get(id=id).delete()
 
-def login_user(request_post):
+def login_account(request_post):
     found_user = User.objects.get(email=request_post.get('email'), password=request_post.get('password'))
     
     User.objects.update(is_current_user=False) # ყველა ოვიექტს შეუცვლის is_current_user ს
@@ -18,7 +11,7 @@ def login_user(request_post):
     found_user.is_current_user = True
     found_user.save()
     
-def logout_user():
+def logout_account():
     User.objects.update(is_current_user=False)
 
 def get_current_user():
@@ -30,10 +23,10 @@ def get_all_users():
 def get_user_info(id):
     return User.objects.get(id=id)
 
-def edit_user(request_post):
-    email = request_post.get('user_email')
-    username = request_post.get('user_name')
-    age = request_post.get('user_age')
+def change_user(request_post):
+    email = request_post.get('email')
+    username = request_post.get('username')
+    age = request_post.get('age')
     password = request_post.get('password')
     
     current_user = User.objects.get(is_current_user = True)

@@ -1,19 +1,23 @@
 {% extends "master.html" %}
+{% load static %}
 
 {% block title %}
     registration page
 {% endblock %}
 
+{% block meta %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+{% endblock  %}
+
 {% block body %}
-    <h1>Registration</h1>
+    <h1 class='text-red-600'>Registration</h1>
     <form method='POST'>
         {% csrf_token %}
         
-        <input type="email" name='user_email' placeholder='email'><br><br>
-        <input type="text" name='user_name' placeholder='username'><br><br>
-        <input type="number" name='user_age' placeholder='age'><br><br>
-        <input type="password" name='password' placeholder='passwors'><br><br>
+        {{ register_form.as_p }} <!-- ჩასვამს input ებს პარაგრაფში -->
 
         <input type="submit">
     </form>
+
+    <script src="{% static 'script.js' %}"></script>
 {% endblock  %}

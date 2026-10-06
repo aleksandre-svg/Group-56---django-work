@@ -12,7 +12,7 @@
         <li>age: {{ current_user.age }}</li>
     </ul>
 
-    <a href="/user/logout/"><button>log out</button></a>
+    <a href="{% url 'logout_user' %}"><button>log out</button></a>
 
-    <a href="/user/edit"><button>edit profile</button></a>
+    <a href="{% url 'edit_user' %}"><button>edit profile</button></a>
 {% endblock  %}

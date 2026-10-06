@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from .utils import add_review, get_all_reviews
+from .forms import ReviewForm
+
 # Create your views here.
 def main(request):
     context = {
@@ -17,4 +19,6 @@ def services(request):
     if request.method == 'POST':
         add_review(request.POST)
         return redirect('main_page')
-    return render(request, 'services.html')
+    return render(request, 'services.html', {
+        'review_form': ReviewForm()
+    })

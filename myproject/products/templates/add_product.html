@@ -5,20 +5,14 @@
 {% endblock  %}
 
 {% block body %}
+    {{ error }}
     <form method="POST">
         {% csrf_token %}
-        <label for="title">title:</label><br>
-        <input type="text" name="title" id="title"><br><br>
 
-        <label for="price">price:</label><br>
-        <input type="number" name="price" id="price"><br><br>
-
-        <label for="desc">desc:</label><br>
-        <input type="text" name="desc" id="desc"><br><br>
-
-        <label for="rating">rating (1-5):</label><br>
-        <input type="number" name="rating" id="rating"><br><br>
-
+        {{ product_add_form }}
+        
         <input type="submit">
     </form>
+
+
 {% endblock  %}

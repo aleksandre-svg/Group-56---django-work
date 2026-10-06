@@ -17,6 +17,7 @@
     </ul>
 
     {% if product_holder.username == current_user.username %}
-        <a href="/product/delete/{{ product_detail.id }}"><button>delete</button></a>
+        <a href="{% url 'delete_product' product_detail.id %}"><button>delete</button></a>
     {% endif %}
+
 {% endblock  %}

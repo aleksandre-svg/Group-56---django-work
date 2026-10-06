@@ -7,8 +7,6 @@
 {% block body %}
     <h1>user info</h1>
 
-    
-
     <ul>
         <li>id: {{ user_info.id }}</li>
         <li>username {{ user_info.username }} ({{ user_info.age }})</li>
@@ -16,6 +14,6 @@
         <li>password: {{ user_info.password }}</li>
     </ul> 
 
-    <a href="/user/delete/{{user_info.id}}"><button>delete</button></a>
+    <a href="{% url 'delete_user' user_info.id %}"><button>delete</button></a>
 
 {% endblock body %}

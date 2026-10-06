@@ -9,10 +9,7 @@
     <h1>edit user</h1>
     <form method='POST'>
         {% csrf_token %}
-        <input type="email" name='user_email' placeholder='email' value='{{ current_user.email }}'><br><br>
-        <input type="text" name='user_name' placeholder='username' value='{{ current_user.username }}'><br><br>
-        <input type="number" name='user_age' placeholder='age' value='{{ current_user.age }}'><br><br>
-        <input type="password" name='password' placeholder='passwors' value='{{ current_user.password }}'><br><br>
+        {{ profile_edit_form }}
         <input type="submit">
     </form>
 {% endblock  %}
