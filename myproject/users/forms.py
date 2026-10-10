@@ -50,7 +50,7 @@ class RegisterForm(forms.ModelForm): # როცა form ი არი შექ
 class LoginForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('email', 'password')
+        fields = ('username', 'password')
         widgets = {
             'password': forms.PasswordInput(attrs={
                 'style': 'color: red;'
@@ -60,9 +60,4 @@ class LoginForm(forms.ModelForm):
 class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ('username', 'email', 'age', 'password')
-        widgets = {
-            'password': forms.PasswordInput(attrs={
-                'style': 'color: red;'
-            })
-        }
+        fields = ('username', 'email', 'age')

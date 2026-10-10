@@ -1,5 +1,4 @@
 from .models import Product
-from users.utils import get_current_user
 
 def delete_product(id):
     user_delete = Product.objects.get(id=id)

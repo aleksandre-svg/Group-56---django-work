@@ -1,0 +1,15 @@
+{% extends "master.html" %}
+
+{% block title %}
+    user verification
+{% endblock  %}
+
+{% block body %}
+    <h1>verification</h1>
+    <form>
+        <p>{{ error }}</p>
+
+        <input type="text" name="user_verification_input">
+        <button type="submit">submit</button>
+    </form>
+{% endblock body %}

@@ -1,14 +1,13 @@
 from django.shortcuts import redirect, render
 from .utils import delete_product, get_all_products, get_product_info
-from users.utils import get_current_user, get_user_info
+from users.utils import get_user_info
 from .forms import ProductAddForm
 
 # Create your views here.
 def all_products(request):
-    context = {
+    return render(request, 'products_index.html', {
         'all_products' : get_all_products()
-    }
-    return render(request, 'products_index.html', context)
+    })
 
 def delete_product(request, id):
     delete_product(id=id)
@@ -19,7 +18,7 @@ def add_product(request):
         form = ProductAddForm(request.POST)
         if form.is_valid():
             product = form.save(commit=False)
-            product.user = get_current_user().id
+            product.user = request.user
             product.save()
             
         else:
@@ -39,7 +38,6 @@ def product_details(request, id):
     found_product = get_product_info(id=id)
     context = {
         'product_detail' : found_product,
-        'product_holder' : get_user_info(id=found_product.id),
-        'current_user' : get_current_user()
+        'product_holder' : get_user_info(id=found_product.id)
     }
     return render(request, 'product_details.html', context)

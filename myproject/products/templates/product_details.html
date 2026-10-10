@@ -16,7 +16,7 @@
         <li>rating: {{ product_detail.rating }}</li>
     </ul>
 
-    {% if product_holder.username == current_user.username %}
+    {% if product_holder.username == user.username %}
         <a href="{% url 'delete_product' product_detail.id %}"><button>delete</button></a>
     {% endif %}
 
